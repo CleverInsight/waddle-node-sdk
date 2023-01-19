@@ -18,14 +18,17 @@ describe('Buckets Fetch', () => {
   test('Test list of buckets returned', async () => {
     const wd = await waddle.build(env);
     const buckets = await wd.getBuckets();
-    
+    expect(buckets).toBeDefined();
   });
+  
 });
 
 describe('Buckets Create', () => {
   test('Test buckets is created successfully', async () => {
     const wd = await waddle.build(env);
     const buckets = await wd.createBucket();
+    expect(buckets).toBeDefined();
+    expect(buckets).toHaveProperty('name');
   });
 });
 
@@ -109,6 +112,7 @@ describe('Bucket Alert-Fetch', () => {
       '76d224a3-91ea-469d-9dbc-e0fe2cc7f109',
       '49499dc5-af72-43ca-804a-bec13c64a077',
     );
+    expect(alert).toBeDefined();
   }, 60_000);
 });
 
@@ -144,6 +148,7 @@ describe('Event Correlation Fetch', () => {
   test('Test to returned the list of correlated data', async () => {
     const wd = await waddle.build(env);
     const event = await wd.getEventCorrelation('76d224a3-91ea-469d-9dbc-e0fe2cc7f109');
+    expect(event).toBeDefined();
   }, 60_000);
 });
 
@@ -154,7 +159,7 @@ describe('Telemetry of Metrics - Fetch', () => {
       '76d224a3-91ea-469d-9dbc-e0fe2cc7f109',
       'fa27bfc2-f348-47fe-a448-e258051a4c20',
     );
-   
+    expect(telemetry).toBeDefined();
   }, 60_000);
 });
 
@@ -162,6 +167,7 @@ describe('Telemetry of Buckets - Fetch', () => {
   test('Test to return the telemetry of buckets', async () => {
     const wd = await waddle.build(env);
     const telemetry = await wd.getBucketTelemetry('76d224a3-91ea-469d-9dbc-e0fe2cc7f109');
+    expect(telemetry).toBeDefined();
   }, 60_000);
 });
 
