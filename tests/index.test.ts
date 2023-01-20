@@ -1,12 +1,6 @@
 import waddle from '../src/waddle';
 import env from '../config.json';
 
-// global.fetch= jest.fn( () =>
-// Promise.resolve({
-//   JSON:()=>Promise.resolve({buckets:{buckets:'name'}})
-// })
-// )as jest.Mock;
-
 describe('Authentication & Authorization', () => {
   test('Test bearer tokens are generated', async () => {
     const wd = await waddle.build(env);
@@ -197,5 +191,89 @@ describe('Buckets Fetch', () => {
     expect(getBuckets).toHaveBeenCalledWith(mockUrl);
   });
 });
+
+describe('Buckets Create', () => {
+  const mockUrl = '/buckets';
+  const mockBuckets = [{
+          interval: 12,
+          location: 'Asia/Calcutta',
+          name: 'Vehicles',
+          retention_days: 30,
+          type: 'time_series',
+          user_id: 'rajan.s@cleverinsight.co',
+  }];
+  const createBuckets = jest.fn(url => mockBuckets);
+  it('returns buckets from an api call', () => {
+    expect(createBuckets(mockUrl)).toBe(mockBuckets);
+    console.debug(createBuckets);
+  });
+  it('called getBuckets with a mockUrl', () => {
+    expect(createBuckets).toHaveBeenCalledWith(mockUrl);
+  });
+});
+
+describe('Buckets Update', () => {
+  const mockUrl = '/buckets';
+  const mockBuckets = [{
+    name: 'VehicleTest',
+    user_id: 'rajan.s@cleverinsight.co',
+  }];
+  const updateBuckets = jest.fn(url => mockBuckets);
+  it('returns buckets from an api call', () => {
+    expect(updateBuckets(mockUrl)).toBe(mockBuckets);
+  });
+  it('called getBuckets with a mockUrl', () => {
+    expect(updateBuckets).toHaveBeenCalledWith(mockUrl);
+  });
+});
+
+describe('Metrics Create', () => {
+  const mockUrl = '/buckets/42fdfa41-a18b-4060-af36-83cd6de8e283/metrics';
+  const mockBuckets = [{
+    user_id: 'rajan.s@cleverinsight.co',
+    name: 'test',
+  }];
+  const createMetrics = jest.fn(url => mockBuckets);
+  it('returns metrics from an api call', () => {
+    expect(createMetrics(mockUrl)).toBe(mockBuckets);
+   
+  });
+  it('called createMetrics with a mockUrl', () => {
+    expect(createMetrics).toHaveBeenCalledWith(mockUrl);
+  });
+});
+
+describe('Metrics Fetch', () => {
+  const mockUrl = '/buckets/72ed4dc9-e4bc-4d87-9da3-15b059b15027/metrics';
+  const mockBuckets = [{
+    user_id: 'rajan.s@cleverinsight.co',
+    name: 'test',
+  }];
+  const getMetrics = jest.fn(url => mockBuckets);
+  it('returns metrics from an api call', () => {
+    expect(getMetrics(mockUrl)).toBe(mockBuckets);
+  });
+  it('called createMetrics with a mockUrl', () => {
+    expect(getMetrics).toHaveBeenCalledWith(mockUrl);
+  });
+});
+
+describe('Metrics Update', () => {
+  const mockUrl = '/buckets/42fdfa41-a18b-4060-af36-83cd6de8e283/metrics/a35bab6c-2399-49f1-98f0-d4cd1eee4a91ss';
+  const mockBuckets = [{
+    user_id: 'rajan.s@cleverinsight.co',
+          tag: 'zone',
+  }];
+  const updateMetrics = jest.fn(url => mockBuckets);
+  it('returns buckets from an api call', () => {
+    expect(updateMetrics(mockUrl)).toBe(mockBuckets);
+  });
+  it('called getBuckets with a mockUrl', () => {
+    expect(updateMetrics).toHaveBeenCalledWith(mockUrl);
+  });
+});
+
+
+
 
 

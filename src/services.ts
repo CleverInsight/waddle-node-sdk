@@ -1,5 +1,4 @@
 import axios from "axios";
-import { application } from "express";
 import env  from '../config.json';
 
 const services  = axios.create({
