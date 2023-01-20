@@ -1,37 +1,36 @@
-
-# waddle-node-sdk
+## waddle-node-sdk
 
 Access Waddle SDK to perform all `CREATE`, `UPDATE`, `DELETE` and `UPDATE` bucket , metrics , alert.
 
-## Installation and Setup Instructions
+### Installation and Setup Instructions
 
 Clone down this repository. You will need `node` `npm` and `jest` installed globally on your machine.
 
-## How to run
+### How to run
 
 `npm run build`
 
 To Run Development Server.
 
-## How to run the test
+### How to run the test
 
 `npm test`  
 
 This runs a predefined command specified in the "test" property of a package's "scripts" object.
 
-## Waddle Login
+### Waddle Login
 
-### Waddle Authentication and Authorization
+#### Waddle Authentication and Authorization
 
-'getToken' method is used to get the token of waddle.
+`getToken` method is used to get the token of waddle.
 
-## Buckets
+### Buckets
 
-### To create a bucket 
+#### To create a bucket 
 
-'createBucket' method is used to create a bucket.
+`createBucket` method is used to create a bucket.
 
-To create Bucked need to pass ,
+To create Bucket we need to pass ,
         user_id
         interval
         location
@@ -39,48 +38,48 @@ To create Bucked need to pass ,
         retention_days
         type
         
-### To fetch all bucket details
+#### To fetch all bucket details
 
-'getBuckets' method is used to fetch all the buckets.
+`getBuckets` method is used to fetch all the buckets.
 
-### To delete a bucket
+#### To delete a bucket
 
-'deleteBucket method is used to delete a particular bucket.
+`deleteBucket` method is used to delete a particular bucket.
 
 To delete a bucket need to pass bucketId.
 
-### To update a bucket
+#### To update a bucket
 
-'updateBucket' method is used to update the bucket name of particular bucket.
+`updateBucket` method is used to update the bucket name of particular bucket.
 
 To update a bucket name need to pass bucketId and also bucket_name and user_id also needed.
 
-## Metrics
+### Metrics
 
-### To Create a metric
+#### To Create a metric
 
-'createMetric' method is used to create a metric.
+`createMetric` method is used to create a metric.
 
 To create Bucked need to pass bucketId and metricId and also ,
         user_id
         name
 
-### To fetch the metric details
+#### To fetch the metric details
 
-'getMetric' method is used to fetch the metric details.
+`getMetric` method is used to fetch the metric details.
 
 To fetch the metric details need to pass bucketId and metricId.
 
-### To delete a metric 
+#### To delete a metric 
 
-'deleteMetric' method is used to delete the metric that is in a bucket.
+`deleteMetric` method is used to delete the metric that is in a bucket.
 
 To delete the metric  need to pass bucketId and metricId.
 
 
-### To update a metric tag
+#### To update a metric tag
 
-'updateMetric' method is used to update the metric tag.
+`updateMetric` method is used to update the metric tag.
 
  note:can't able to update metric name
 
@@ -88,23 +87,23 @@ To update metric name need to pass bucketId and metricId and also.
         user_id
         tag
 
-## Anomaly
+### Anomaly
 
-### To fetch the details of anomaly 
+#### To fetch the details of anomaly 
 
-'getAnomaly' method is used to fetch the details of anomaly.
+`getAnomaly` method is used to fetch the details of anomaly.
 
-### To fetch and filter the details of anomaly
+#### To fetch and filter the details of anomaly
 
-'getFilteredAnomaly' method is used to fetch and filter the deatils of anomaly.
+`getFilteredAnomaly` method is used to fetch and filter the deatils of anomaly.
 
- ex: https://api.waddle.cloud/beta/buckets/0cd32a8f-31af-40da-b019-d8b658679c6b/anomaly/filter?from=01/18/2023%2005:58:00&to=01/18/2023%2007:58:00&agg=mean
+ REF: https://api.waddle.cloud/beta/buckets/0cd32a8f-31af-40da-b019-d8b658679c6b/anomaly/filter?from=01/18/2023%2005:58:00&to=01/18/2023%2007:58:00&agg=mean
 
-## Alert 
+### Alert 
 
-## To create an Alert 
+### To create an Alert 
 
-'createAlert' method is used to create an Alert.
+`createAlert` method is used to create an Alert.
 
 To create alert need to pass bucketId and metricId also ,
         comparison
@@ -115,27 +114,27 @@ To create alert need to pass bucketId and metricId also ,
         type
         upper_range
         
-### To fetch all Alert in Bucket level
+#### To fetch all Alert in Bucket level
 
-'getBucketAlert' method is used to fetch all the buckets.
+`getBucketAlert` method is used to fetch all the buckets.
 
 To fetch the alert of a bucket we need to pass bucketId.
 
-### To fetch all Alert in Metrics level
+#### To fetch all Alert in Metrics level
 
-'getMetricAlert' method is used to fetch all the buckets.
+`getMetricAlert` method is used to fetch all the buckets.
 
 To fetch the alert of a bucket we need to pass bucketId and metricId.
 
-### To delete an Alert
+#### To delete an Alert
 
-'deleteAlert method is used to delete a particular Alert.
+`deleteAlert` method is used to delete a particular Alert.
 
 To delete a bucket need to pass bucketId and metricId.
 
-### To update an Alert
+#### To update an Alert
 
-'updateAlert' method is used to update the alert.
+`updateAlert` method is used to update the alert.
 
 To update a bucket name need to pass bucketId and also,
         comparison
@@ -146,21 +145,21 @@ To update a bucket name need to pass bucketId and also,
         type
         upper_range
 
-## Event correlation
+### Event correlation
 
-### To Fetch correlated data
+#### To Fetch correlated data
 
-'getEventCorrelation' method to fetch correlated data .
+`getEventCorrelation` method to fetch correlated data .
 
-## Telemetry
+### Telemetry
 
-### To Fetch Telemetric data of buckets
+#### To Fetch Telemetric data of buckets
 
-'getBucketTelemetry' method is used to fetch telemetric data of buckets.
+`getBucketTelemetry` method is used to fetch telemetric data of buckets.
 
-### To Fetch Telemetric data of metrics
+#### To Fetch Telemetric data of metrics
 
-'getMetricTelemetry' method is used to fetch telemetric data of metrics.
+`getMetricTelemetry` method is used to fetch telemetric data of metrics.
 
 
 
