@@ -97,7 +97,6 @@ To update metric name need to pass bucketId and metricId and also.
 
 `getFilteredAnomaly` method is used to fetch and filter the deatils of anomaly.
 
- REF: https://api.waddle.cloud/beta/buckets/0cd32a8f-31af-40da-b019-d8b658679c6b/anomaly/filter?from=01/18/2023%2005:58:00&to=01/18/2023%2007:58:00&agg=mean
 
 ### Alert 
 
