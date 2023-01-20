@@ -20,6 +20,7 @@ This runs a predefined command specified in the "test" property of a package's "
 
 ### Waddle Login
 
+
 #### Waddle Authentication and Authorization
 
 `getToken` method is used to get the token of waddle.
