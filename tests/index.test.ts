@@ -229,13 +229,13 @@ describe('Buckets Update', () => {
 
 describe('Metrics Create', () => {
   const mockUrl = '/buckets/42fdfa41-a18b-4060-af36-83cd6de8e283/metrics';
-  const mockBuckets = [{
+  const mockMetrics = [{
     user_id: 'rajan.s@cleverinsight.co',
     name: 'test',
   }];
-  const createMetrics = jest.fn(url => mockBuckets);
+  const createMetrics = jest.fn(url => mockMetrics);
   it('returns metrics from an api call', () => {
-    expect(createMetrics(mockUrl)).toBe(mockBuckets);
+    expect(createMetrics(mockUrl)).toBe(mockMetrics);
    
   });
   it('called createMetrics with a mockUrl', () => {
@@ -245,13 +245,13 @@ describe('Metrics Create', () => {
 
 describe('Metrics Fetch', () => {
   const mockUrl = '/buckets/72ed4dc9-e4bc-4d87-9da3-15b059b15027/metrics';
-  const mockBuckets = [{
+  const mockMetrics = [{
     user_id: 'rajan.s@cleverinsight.co',
     name: 'test',
   }];
-  const getMetrics = jest.fn(url => mockBuckets);
+  const getMetrics = jest.fn(url => mockMetrics);
   it('returns metrics from an api call', () => {
-    expect(getMetrics(mockUrl)).toBe(mockBuckets);
+    expect(getMetrics(mockUrl)).toBe(mockMetrics);
   });
   it('called createMetrics with a mockUrl', () => {
     expect(getMetrics).toHaveBeenCalledWith(mockUrl);
@@ -260,13 +260,13 @@ describe('Metrics Fetch', () => {
 
 describe('Metrics Update', () => {
   const mockUrl = '/buckets/42fdfa41-a18b-4060-af36-83cd6de8e283/metrics/a35bab6c-2399-49f1-98f0-d4cd1eee4a91ss';
-  const mockBuckets = [{
+  const mockMetrics = [{
     user_id: 'rajan.s@cleverinsight.co',
           tag: 'zone',
   }];
-  const updateMetrics = jest.fn(url => mockBuckets);
+  const updateMetrics = jest.fn(url => mockMetrics);
   it('returns buckets from an api call', () => {
-    expect(updateMetrics(mockUrl)).toBe(mockBuckets);
+    expect(updateMetrics(mockUrl)).toBe(mockMetrics);
   });
   it('called getBuckets with a mockUrl', () => {
     expect(updateMetrics).toHaveBeenCalledWith(mockUrl);
