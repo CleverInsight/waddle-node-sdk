@@ -99,7 +99,7 @@ describe('Bucket Alert-Fetch', () => {
   }, 60_000);
 });
 
-describe('Bucket Alert-Fetch', () => {
+describe('Metric Alert-Fetch', () => {
   test('Test - list of alerts returned', async () => {
     const wd = await waddle.build(env);
     const alert = await wd.getMetricAlert(
@@ -207,7 +207,7 @@ describe('Buckets Create', () => {
     expect(createBuckets(mockUrl)).toBe(mockBuckets);
     console.debug(createBuckets);
   });
-  it('called getBuckets with a mockUrl', () => {
+  it('called createBuckets with a mockUrl', () => {
     expect(createBuckets).toHaveBeenCalledWith(mockUrl);
   });
 });
@@ -219,10 +219,10 @@ describe('Buckets Update', () => {
     user_id: 'rajan.s@cleverinsight.co',
   }];
   const updateBuckets = jest.fn(url => mockBuckets);
-  it('returns buckets from an api call', () => {
+  it('updates buckets from an api call', () => {
     expect(updateBuckets(mockUrl)).toBe(mockBuckets);
   });
-  it('called getBuckets with a mockUrl', () => {
+  it('called updateBuckets with a mockUrl', () => {
     expect(updateBuckets).toHaveBeenCalledWith(mockUrl);
   });
 });
@@ -253,7 +253,7 @@ describe('Metrics Fetch', () => {
   it('returns metrics from an api call', () => {
     expect(getMetrics(mockUrl)).toBe(mockMetrics);
   });
-  it('called createMetrics with a mockUrl', () => {
+  it('called getMetrics with a mockUrl', () => {
     expect(getMetrics).toHaveBeenCalledWith(mockUrl);
   });
 });
@@ -265,13 +265,88 @@ describe('Metrics Update', () => {
           tag: 'zone',
   }];
   const updateMetrics = jest.fn(url => mockMetrics);
-  it('returns buckets from an api call', () => {
+  it('updates metrics from an api call', () => {
     expect(updateMetrics(mockUrl)).toBe(mockMetrics);
   });
-  it('called getBuckets with a mockUrl', () => {
+  it('called updateMetrics with a mockUrl', () => {
     expect(updateMetrics).toHaveBeenCalledWith(mockUrl);
   });
 });
+
+describe('Bucket Alert-Fetch', () => {
+  const mockUrl = '/buckets/76d224a3-91ea-469d-9dbc-e0fe2cc7f109/alert';
+  const mockAlerts = [{
+     bucket_name: "", 
+     metric:""
+  }];
+  const getBucketAlert = jest.fn(url => mockAlerts);
+  it('returns alerts from an api call', () => {
+    expect(getBucketAlert(mockUrl)).toBe(mockAlerts);
+    console.debug(getBucketAlert);
+  });
+  it('called getBucketAlert with a mockUrl', () => {
+    expect(getBucketAlert).toHaveBeenCalledWith(mockUrl);
+  });
+});
+
+describe('Metric Alert-Fetch', () => {
+  const mockUrl = '/buckets/76d224a3-91ea-469d-9dbc-e0fe2cc7f109/metrics/49499dc5-af72-43ca-804a-bec13c64a077/alert';
+  const mockAlerts = [{
+     bucket_name: "", 
+     metric:""
+  }];
+  const getMetricAlert = jest.fn(url => mockAlerts);
+  it('returns alerts from an api call', () => {
+    expect(getMetricAlert(mockUrl)).toBe(mockAlerts);
+    console.debug(getMetricAlert);
+  });
+  it('called getMetricAlerts with a mockUrl', () => {
+    expect(getMetricAlert).toHaveBeenCalledWith(mockUrl);
+  });
+});
+
+describe('Alert Create', () => {
+  const mockUrl = '/buckets/72ed4dc9-e4bc-4d87-9da3-15b059b15027/metrics/3206c6d0-da4d-4674-8dcf-b055d5cba960//alert';
+  const mockAlert = [{
+          comparison: '>',
+          lower_range: 78,
+          metric_id: '3206c6d0-da4d-4674-8dcf-b055d5cba960',
+          name: 'failure1',
+          services: ['whatsapp'],
+          type: 'Info',
+          upper_range: 100,
+  }];
+  const createAlert = jest.fn(url => mockAlert);
+  it('creates alerts from an api call', () => {
+    expect(createAlert(mockUrl)).toBe(mockAlert);
+   
+  });
+  it('called createAlert with a mockUrl', () => {
+    expect(createAlert).toHaveBeenCalledWith(mockUrl);
+  });
+});
+
+describe('Alert Create', () => {
+  const mockUrl = '/buckets/72ed4dc9-e4bc-4d87-9da3-15b059b15027/metrics/3206c6d0-da4d-4674-8dcf-b055d5cba960//alert';
+  const mockAlert = [{
+          comparison: '>',
+          lower_range: 78,
+          metric_id: '3206c6d0-da4d-4674-8dcf-b055d5cba960',
+          name: 'failure1',
+          services: ['whatsapp'],
+          type: 'Info',
+          upper_range: 100,
+  }];
+  const updateAlert = jest.fn(url => mockAlert);
+  it('returns alerts from an api call', () => {
+    expect(updateAlert(mockUrl)).toBe(mockAlert);
+   
+  });
+  it('called updateAlerts with a mockUrl', () => {
+    expect(updateAlert).toHaveBeenCalledWith(mockUrl);
+  });
+});
+
 
 
 
