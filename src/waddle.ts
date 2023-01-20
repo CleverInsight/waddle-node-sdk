@@ -40,7 +40,7 @@ class waddle {
         },
         { headers: { Authorization: this.bearer } },
       )
-      .then((response) => console.log(response.data))
+      .then((response) => (response.data))
       .catch((err) => err);
   };
 
@@ -74,7 +74,7 @@ class waddle {
         },
         { headers: { Authorization: this.bearer } },
       )
-      .then((response) => console.log(response.data))
+      .then((response) =>(response.data))
       .catch((err) => err);
   };
 
@@ -103,7 +103,7 @@ class waddle {
       .get(`${baseURL}/buckets/72ed4dc9-e4bc-4d87-9da3-15b059b15027/metrics`, {
         headers: { Authorization: this.bearer },
       })
-      .then((response) => console.log(response.data))
+      .then((response) => (response.data))
       .catch((err) => err);
   };
 

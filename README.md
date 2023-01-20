@@ -1,7 +1,6 @@
-
 # waddle-node-sdk
 
-Access Waddle SDK to perform all `CREATE`, `UPDATE`, `DELETE` and `UPDATE` bucket , metrics , alert.
+Access Waddle SDK to perform all `CREATE`, `READ`, `DELETE` and `UPDATE` bucket , metrics , alert.
 
 ## Installation and Setup Instructions
 
@@ -17,19 +16,19 @@ To Run Development Server.
 
 `npm test`  
 
-This runs a predefined command specified in the "test" property of a package's "scripts" object.
+This runs a predefined command specified in the "test" property of a package`s "scripts" object.
 
 ## Waddle Login
 
 ### Waddle Authentication and Authorization
 
-'getToken' method is used to get the token of waddle.
+`getToken` method is used to get the token of waddle.
 
 ## Buckets
 
 ### To create a bucket 
 
-'createBucket' method is used to create a bucket.
+`createBucket` method is used to create a bucket.
 
 To create Bucked need to pass ,
         user_id
@@ -41,17 +40,17 @@ To create Bucked need to pass ,
         
 ### To fetch all bucket details
 
-'getBuckets' method is used to fetch all the buckets.
+`getBuckets` method is used to fetch all the buckets.
 
 ### To delete a bucket
 
-'deleteBucket method is used to delete a particular bucket.
+`deleteBucket method is used to delete a particular bucket.
 
 To delete a bucket need to pass bucketId.
 
 ### To update a bucket
 
-'updateBucket' method is used to update the bucket name of particular bucket.
+`updateBucket` method is used to update the bucket name of particular bucket.
 
 To update a bucket name need to pass bucketId and also bucket_name and user_id also needed.
 
@@ -59,7 +58,7 @@ To update a bucket name need to pass bucketId and also bucket_name and user_id a
 
 ### To Create a metric
 
-'createMetric' method is used to create a metric.
+`createMetric` method is used to create a metric.
 
 To create Bucked need to pass bucketId and metricId and also ,
         user_id
@@ -67,22 +66,22 @@ To create Bucked need to pass bucketId and metricId and also ,
 
 ### To fetch the metric details
 
-'getMetric' method is used to fetch the metric details.
+`getMetric` method is used to fetch the metric details.
 
 To fetch the metric details need to pass bucketId and metricId.
 
 ### To delete a metric 
 
-'deleteMetric' method is used to delete the metric that is in a bucket.
+`deleteMetric` method is used to delete the metric that is in a bucket.
 
 To delete the metric  need to pass bucketId and metricId.
 
 
 ### To update a metric tag
 
-'updateMetric' method is used to update the metric tag.
+`updateMetric` method is used to update the metric tag.
 
- note:can't able to update metric name
+ note:can`t able to update metric name
 
 To update metric name need to pass bucketId and metricId and also.
         user_id
@@ -92,17 +91,17 @@ To update metric name need to pass bucketId and metricId and also.
 
 ### To fetch the details of anomaly 
 
-'getAnomaly' method is used to fetch the details of anomaly.
+`getAnomaly` method is used to fetch the details of anomaly.
 
 ### To fetch and filter the details of anomaly
 
-'getFilteredAnomaly' method is used to fetch and filter the deatils of anomaly.
+`getFilteredAnomaly` method is used to fetch and filter the deatils of anomaly.
 
 ## Alert 
 
 ## To create an Alert 
 
-'createAlert' method is used to create an Alert.
+`createAlert` method is used to create an Alert.
 
 To create alert need to pass bucketId and metricId also ,
         comparison
@@ -115,25 +114,25 @@ To create alert need to pass bucketId and metricId also ,
         
 ### To fetch all Alert in Bucket level
 
-'getBucketAlert' method is used to fetch all the buckets.
+`getBucketAlert` method is used to fetch all the buckets.
 
 To fetch the alert of a bucket we need to pass bucketId.
 
 ### To fetch all Alert in Metrics level
 
-'getMetricAlert' method is used to fetch all the buckets.
+`getMetricAlert` method is used to fetch all the buckets.
 
 To fetch the alert of a bucket we need to pass bucketId and metricId.
 
 ### To delete an Alert
 
-'deleteAlert method is used to delete a particular Alert.
+`deleteAlert` method is used to delete a particular Alert.
 
 To delete a bucket need to pass bucketId and metricId.
 
 ### To update an Alert
 
-'updateAlert' method is used to update the alert.
+`updateAlert` method is used to update the alert.
 
 To update a bucket name need to pass bucketId and also,
         comparison
@@ -148,17 +147,17 @@ To update a bucket name need to pass bucketId and also,
 
 ### To Fetch correlated data
 
-'getEventCorrelation' method to fetch correlated data .
+`getEventCorrelation` method to fetch correlated data .
 
 ## Telemetry
 
 ### To Fetch Telemetric data of buckets
 
-'getBucketTelemetry' method is used to fetch telemetric data of buckets.
+`getBucketTelemetry` method is used to fetch telemetric data of buckets.
 
 ### To Fetch Telemetric data of metrics
 
-'getMetricTelemetry' method is used to fetch telemetric data of metrics.
+`getMetricTelemetry` method is used to fetch telemetric data of metrics.
 
 
 

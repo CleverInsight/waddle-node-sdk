@@ -185,7 +185,6 @@ describe('Buckets Fetch', () => {
   const getBuckets = jest.fn(url => mockBuckets);
   it('returns buckets from an api call', () => {
     expect(getBuckets(mockUrl)).toBe(mockBuckets);
-    console.debug(getBuckets);
   });
   it('called getBuckets with a mockUrl', () => {
     expect(getBuckets).toHaveBeenCalledWith(mockUrl);
@@ -205,7 +204,6 @@ describe('Buckets Create', () => {
   const createBuckets = jest.fn(url => mockBuckets);
   it('returns buckets from an api call', () => {
     expect(createBuckets(mockUrl)).toBe(mockBuckets);
-    console.debug(createBuckets);
   });
   it('called createBuckets with a mockUrl', () => {
     expect(createBuckets).toHaveBeenCalledWith(mockUrl);
@@ -282,7 +280,6 @@ describe('Bucket Alert-Fetch', () => {
   const getBucketAlert = jest.fn(url => mockAlerts);
   it('returns alerts from an api call', () => {
     expect(getBucketAlert(mockUrl)).toBe(mockAlerts);
-    console.debug(getBucketAlert);
   });
   it('called getBucketAlert with a mockUrl', () => {
     expect(getBucketAlert).toHaveBeenCalledWith(mockUrl);
@@ -298,7 +295,6 @@ describe('Metric Alert-Fetch', () => {
   const getMetricAlert = jest.fn(url => mockAlerts);
   it('returns alerts from an api call', () => {
     expect(getMetricAlert(mockUrl)).toBe(mockAlerts);
-    console.debug(getMetricAlert);
   });
   it('called getMetricAlerts with a mockUrl', () => {
     expect(getMetricAlert).toHaveBeenCalledWith(mockUrl);
@@ -326,7 +322,7 @@ describe('Alert Create', () => {
   });
 });
 
-describe('Alert Create', () => {
+describe('Alert Update', () => {
   const mockUrl = '/buckets/72ed4dc9-e4bc-4d87-9da3-15b059b15027/metrics/3206c6d0-da4d-4674-8dcf-b055d5cba960//alert';
   const mockAlert = [{
           comparison: '>',
@@ -346,9 +342,3 @@ describe('Alert Create', () => {
     expect(updateAlert).toHaveBeenCalledWith(mockUrl);
   });
 });
-
-
-
-
-
-
