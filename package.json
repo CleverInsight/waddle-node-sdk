@@ -1,6 +1,6 @@
 {
   "name": "waddle-node-sdk",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Waddle Cloud SDK client library",
   "main": "src/waddle.ts",
   "directories": {
