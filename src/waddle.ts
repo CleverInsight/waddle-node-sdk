@@ -3,6 +3,7 @@ import axios from 'axios';
 const baseURL = 'https://api.waddle.cloud/beta';
 
 class waddle {
+  
   bearer: string;
   constructor(bearer: string) {
     this.bearer = bearer;
@@ -26,17 +27,17 @@ class waddle {
 
   //createBucket method to create the buckets
 
-  createBucket = async () => {
+  createBucket = async (data:any) => {
     return axios
       .post(
         `${baseURL}/buckets`,
         {
-          interval: 12,
-          location: 'Asia/Calcutta',
-          name: 'Vehicles',
-          retention_days: 30,
-          type: 'time_series',
-          user_id: 'rajan.s@cleverinsight.co',
+          interval:data.interval,
+          location: data.location,
+          name: data.name,
+          retention_days: data.retention_days,
+          type: data.type,
+          user_id: data.user_id,
         },
         { headers: { Authorization: this.bearer } },
       )
@@ -53,24 +54,28 @@ class waddle {
       .catch((err) => err);
   };
 
-  //deleteBucket to delete id matching bucket
+  //archieveBucket to archeive id matching bucket
 
-  deleteBucket = async (id: string) => {
+  archieveBucket = async (id: string,data:any) => {
     return axios
-      .delete(`${baseURL}/buckets/653649db-df2f-46ec-8c58-2cccb2b451c9`, { headers: { Authorization: this.bearer } })
+      .put(`${baseURL}/buckets/${id}`,
+      {
+        is_archived: true,
+        user_id: "rajan.s@cleverinsight.co"
+      } ,{ headers: { Authorization: this.bearer } })
       .then((response) => response)
       .catch((err) => err);
   };
 
   //updateBucket to delete id matching bucket
 
-  updateBucket = async (id: string) => {
+  updateBucket = async (id: string,data:any) => {
     return axios
       .put(
-        `${baseURL}/buckets/42fdfa41-a18b-4060-af36-83cd6de8e283`,
+        `${baseURL}/buckets/${id}`,
         {
-          name: 'VehicleTest',
-          user_id: 'rajan.s@cleverinsight.co',
+          name: data.name,
+          user_id: data.user_id,
         },
         { headers: { Authorization: this.bearer } },
       )
@@ -82,13 +87,13 @@ class waddle {
 
   //createBucket method to create the buckets
 
-  createMetrics = async (id: string) => {
+  createMetrics = async (id: string,data:any) => {
     return axios
       .post(
-        `${baseURL}/buckets/42fdfa41-a18b-4060-af36-83cd6de8e283/metrics`,
+        `${baseURL}/buckets/${id}/metrics`,
         {
-          user_id: 'rajan.s@cleverinsight.co',
-          name: 'test',
+          user_id: data.user_id,
+          name: data.name,
         },
         { headers: { Authorization: this.bearer } },
       )
@@ -107,26 +112,28 @@ class waddle {
       .catch((err) => err);
   };
 
-  //deleteMetrics method to create the buckets
+  //archeiveMetric method to create the buckets
 
-  deleteMetrics = async (id: string, metricsId: string) => {
+  archieveMetric = async (id: string, metricsId: string, data:any) => {
     return axios
-      .delete(`${baseURL}/buckets/42fdfa41-a18b-4060-af36-83cd6de8e283/metrics/a35bab6c-2399-49f1-98f0-d4cd1eee4a91ss`, {
-        headers: { Authorization: this.bearer },
-      })
-      .then((response) => response.data)
+      .put(`${baseURL}/buckets/${id}/metrics/${metricsId}`,
+      {
+        is_archived: data.is_archived,
+        user_id: data.user_id
+      } ,{ headers: { Authorization: this.bearer } })
+      .then((response) => response)
       .catch((err) => err);
   };
 
   //updateMetrics to delete id matching bucket
 
-  updateMetrics = async (id: string, metric_id: string) => {
+  updateMetrics = async (id: string, metric_id: string , data:any) => {
     return axios
       .put(
-        `${baseURL}/buckets/42fdfa41-a18b-4060-af36-83cd6de8e283/metrics/a35bab6c-2399-49f1-98f0-d4cd1eee4a91ss`,
+        `${baseURL}/buckets/${id}/metrics/${metric_id}`,
         {
-          user_id: 'rajan.s@cleverinsight.co',
-          tag: 'zone',
+          user_id: data.user_id,
+          tag: data.tag,
         },
         { headers: { Authorization: this.bearer } },
       )
@@ -138,9 +145,9 @@ class waddle {
 
   //getAnomaly method to fetch the anomaly details
 
-  getAnomaly = async (id: string) => {
+    getAnomaly = async (id: string) => {
     return axios
-      .get(`${baseURL}/buckets/76d224a3-91ea-469d-9dbc-e0fe2cc7f109/anomaly`, {
+      .get(`${baseURL}/buckets/${id}/anomaly`, {
         headers: { Authorization: this.bearer },
       })
       .then((response) => response.data)
@@ -152,7 +159,7 @@ class waddle {
   getFilteredAnomaly = async (id: string) => {
     return axios
       .get(
-        `${baseURL}/buckets/76d224a3-91ea-469d-9dbc-e0fe2cc7f109/anomaly/filter?from=01/11/2023%2008:27:00&to=01/11/2023%2010:27:00&agg=mean`,
+        `${baseURL}/buckets/${id}/anomaly/filter`,
         {
           headers: { Authorization: this.bearer },
         },
@@ -167,7 +174,7 @@ class waddle {
 
   getBucketAlert = async (id: string) => {
     return axios
-      .get(`${baseURL}/buckets/76d224a3-91ea-469d-9dbc-e0fe2cc7f109/alert`, {
+      .get(`${baseURL}/buckets/${id}/alert`, {
         headers: { Authorization: this.bearer },
       })
       .then((response) => response.data)
@@ -190,18 +197,18 @@ class waddle {
 
   //createAlert method to create the buckets
 
-  createAlert = async (id: string, metricsId: string) => {
+  createAlert = async (id: string, metricsId: string,data:any) => {
     return axios
       .post(
-        `${baseURL}/buckets/72ed4dc9-e4bc-4d87-9da3-15b059b15027/metrics/3206c6d0-da4d-4674-8dcf-b055d5cba960//alert`,
+        `${baseURL}/buckets/${id}/metrics/${metricsId}/alert`,
         {
-          comparison: '>',
-          lower_range: 78,
-          metric_id: '3206c6d0-da4d-4674-8dcf-b055d5cba960',
-          name: 'failure1',
-          services: ['whatsapp'],
-          type: 'Info',
-          upper_range: 100,
+          comparison: data.comparison,
+          lower_range: data.lower_range,
+          metric_id: data.metric_id,
+          name: data.name,
+          services: data.services,
+          type: data.type,
+          upper_range: data.upper_range,
         },
         { headers: { Authorization: this.bearer } },
       )
@@ -214,7 +221,7 @@ class waddle {
   deleteAlert = async (id: string, metric_id: string, alert_id: string) => {
     return axios
       .delete(
-        `${baseURL}/buckets/72ed4dc9-e4bc-4d87-9da3-15b059b15027/metrics/361c775b-0049-447b-8c84-fc600188b8bc/alert?id=68f54e29-74d4-4c2b-ad49-2e434d84cf0c`,
+        `${baseURL}/buckets/${id}/metrics/${metric_id}/alert?${alert_id}`,
         { headers: { Authorization: this.bearer } },
       )
       .then((response) => response)
@@ -223,18 +230,18 @@ class waddle {
 
   //updateMetrics to delete id matching bucket
 
-  updateAlert = async (id: string, metric_id: string, alert_id: string) => {
+  updateAlert = async (id: string, metric_id: string, alert_id: string,data:any) => {
     return axios
       .put(
-        `${baseURL}/buckets/72ed4dc9-e4bc-4d87-9da3-15b059b15027/metrics/361c775b-0049-447b-8c84-fc600188b8bc/alert?id=a8149911-8051-4bfa-8392-76c85c9e262b`,
+        `${baseURL}/buckets/${id}/metrics/${metric_id}/alert?${alert_id}`,
         {
-          comparison: '>',
-          lower_range: 97.319712965,
-          metric_id: '361c775b-0049-447b-8c84-fc600188b8bc',
-          name: 'cpu failure',
-          services: ['whatsapp'],
-          type: 'Info',
-          upper_range: 99.3561005523,
+          comparison: data.comparison,
+          lower_range: data.lower_range,
+          metric_id: data.metric_id,
+          name: data.name,
+          services: data.services,
+          type: data.type,
+          upper_range: data.upper_range,
         },
         { headers: { Authorization: this.bearer } },
       )
@@ -249,7 +256,7 @@ class waddle {
   getEventCorrelation = async (id: string) => {
     return axios
       .get(
-        `${baseURL}/buckets/76d224a3-91ea-469d-9dbc-e0fe2cc7f109/event?from=01/10/2023%2008:06:00&to=01/10/2023%2010:06:00&agg=mean`,
+        `${baseURL}/buckets/${id}/event?from=01/10/2023%2008:06:00&to=01/10/2023%2010:06:00&agg=mean`,
         {
           headers: { Authorization: this.bearer },
         },
@@ -264,7 +271,7 @@ class waddle {
 
   getBucketTelemetry = async (id: string) => {
     return axios
-      .get(`${baseURL}/buckets/76d224a3-91ea-469d-9dbc-e0fe2cc7f109/telemetry`, {
+      .get(`${baseURL}/buckets/${id}/telemetry`, {
         headers: { Authorization: this.bearer },
       })
       .then((response) => response.data)
@@ -276,7 +283,7 @@ class waddle {
   getMetricTelemetry = async (id: string, metric_id: string) => {
     return axios
       .get(
-        `${baseURL}/buckets/76d224a3-91ea-469d-9dbc-e0fe2cc7f109/metrics/fa27bfc2-f348-47fe-a448-e258051a4c20/telemetry`,
+        `${baseURL}/buckets/${id}/metrics/${metric_id}/telemetry`,
         {
           headers: { Authorization: this.bearer },
         },
@@ -285,19 +292,38 @@ class waddle {
       .catch((err) => err);
   };
 
-  //Adding data to the metrics
+  //Single Metric Data Load
 
-  addData = async (id: string,metric_id:string) => {
+  addData = async (id: string,metric_id:string,data:any) => {
     return axios
       .post(
-        `${baseURL}/buckets/2fdfa41-a18b-4060-af36-83cd6de8e283/metrics/71ad0fea-27d2-4150-a552-29dc5cf39c2c`,
+        `${baseURL}/buckets/${id}/metrics/${metric_id}`,
         {
-          timestamp: "2023-01-19T12:01:43+05:30",
-          value: 41.07893079486007
+          timestamp: data.timestamp,
+          value: data.value
         },
         { headers: { Authorization: this.bearer } },
       )
       .then((response) => response.data)
+      .catch((err) => err);
+  };
+
+  //batchload API
+
+  batchload = async (id: string,data:any) => {
+    return axios
+      .post(
+        `${baseURL}/buckets/${id}/batchload`,
+        {
+          
+            batch:data,
+            tag:data.tag,
+            timestamp: data.timestamp
+          
+        },
+        { headers: { Authorization: this.bearer } },
+      )
+      .then((response) => console.log(response.data))
       .catch((err) => err);
   };
 }

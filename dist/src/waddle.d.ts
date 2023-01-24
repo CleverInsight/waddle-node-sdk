@@ -22,6 +22,7 @@ declare class waddle {
     getBucketTelemetry: (id: string) => Promise<any>;
     getMetricTelemetry: (id: string, metric_id: string) => Promise<any>;
     addData: (id: string, metric_id: string) => Promise<any>;
+    batchload: (id: string) => Promise<any>;
 }
 export default waddle;
 //# sourceMappingURL=waddle.d.ts.map

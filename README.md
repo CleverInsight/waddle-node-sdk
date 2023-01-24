@@ -1,28 +1,20 @@
 # waddle-node-sdk
 
-Access Waddle SDK to perform all `CREATE`, `READ`, `DELETE` and `UPDATE` bucket , metrics , alert.
+Access Waddle SDK to perform all `CREATE`, `READ`, `DELETE` and `UPDATE` bucket , metrics , alert .
+To use this module first simply install the module using the below command.
 
-## Installation and Setup Instructions
+## Install waddle package
 
-Clone down this repository. You will need `node` `npm` and `jest` installed globally on your machine.
+`npm i waddle-node-sdk`
 
-## How to run
+## How to use waddle-node-sdk
 
-`npm run build`
-
-To Run Development Server.
-
-## How to run the test
-
-`npm test`  
-
-This runs a predefined command specified in the "test" property of a package`s "scripts" object.
-
-## Waddle Login
+The current version of the module has only 21 functions to use
 
 ### Waddle Authentication and Authorization
 
 `getToken` method is used to get the token of waddle.
+
 
 ## Buckets
 
@@ -30,29 +22,33 @@ This runs a predefined command specified in the "test" property of a package`s "
 
 `createBucket` method is used to create a bucket.
 
-To create Bucked need to pass ,
-        user_id
-        interval
-        location
-        name
-        retention_days
-        type
+To create Bucket need to pass,
+        user_id  : string,
+        interval : number,
+        location : string,
+        name  :string,
+        retention_days : number,
+        type : string
         
 ### To fetch all bucket details
 
 `getBuckets` method is used to fetch all the buckets.
 
-### To delete a bucket
+### To Archeive a bucket
 
-`deleteBucket method is used to delete a particular bucket.
+`archieveBucket` method is used to archeive a particular bucket.
 
-To delete a bucket need to pass bucketId.
+To archeive a bucket need to pass bucketId and data's like
+        is_archived  : boolean,
+        user_id : string
 
 ### To update a bucket
 
 `updateBucket` method is used to update the bucket name of particular bucket.
 
-To update a bucket name need to pass bucketId and also bucket_name and user_id also needed.
+To update a bucket name need to pass bucketId , metricId and data's like
+        name  : string,
+        user_id : string
 
 ## Metrics
 
@@ -60,9 +56,9 @@ To update a bucket name need to pass bucketId and also bucket_name and user_id a
 
 `createMetric` method is used to create a metric.
 
-To create Bucked need to pass bucketId and metricId and also ,
-        user_id
-        name
+To create Bucked need to pass bucketId and metricId and data's like ,
+        user_id : string ,
+        name : string
 
 ### To fetch the metric details
 
@@ -83,9 +79,9 @@ To delete the metric  need to pass bucketId and metricId.
 
  note:can`t able to update metric name
 
-To update metric name need to pass bucketId and metricId and also.
-        user_id
-        tag
+To update metric name need to pass bucketId and metricId and data's like.
+        user_id : string
+        tag : string
 
 ## Anomaly
 
@@ -103,14 +99,14 @@ To update metric name need to pass bucketId and metricId and also.
 
 `createAlert` method is used to create an Alert.
 
-To create alert need to pass bucketId and metricId also ,
-        comparison
-        lower_range
-        metric_id
-        name
-        services
-        type
-        upper_range
+To create alert need to pass bucketId and metricId and data's like,
+        comparison : string
+        lower_range : number
+        metric_id : string
+        name : string
+        services : Array of strings
+        type : string
+        upper_range : number
         
 ### To fetch all Alert in Bucket level
 
@@ -134,14 +130,14 @@ To delete a bucket need to pass bucketId and metricId.
 
 `updateAlert` method is used to update the alert.
 
-To update a bucket name need to pass bucketId and also,
-        comparison
-        lower_range
-        metric_id
-        name
-        services
-        type
-        upper_range
+To update a bucket name need to pass bucketId and data's like,
+        comparison : string
+        lower_range : number
+        metric_id : string
+        name : string
+        services : Array of strings
+        type : string
+        upper_range : number
 
 ## Event correlation
 

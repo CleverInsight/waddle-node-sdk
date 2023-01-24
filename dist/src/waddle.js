@@ -23,12 +23,12 @@ class waddle {
                 .post(`${baseURL}/buckets`, {
                 interval: 12,
                 location: 'Asia/Calcutta',
-                name: 'Vehicles',
+                name: 'Manufact',
                 retention_days: 30,
                 type: 'time_series',
                 user_id: 'rajan.s@cleverinsight.co',
             }, { headers: { Authorization: this.bearer } })
-                .then((response) => console.log(response.data))
+                .then((response) => (response.data))
                 .catch((err) => err);
         });
         //getBucket to fetch the bucket
@@ -52,7 +52,7 @@ class waddle {
                 name: 'VehicleTest',
                 user_id: 'rajan.s@cleverinsight.co',
             }, { headers: { Authorization: this.bearer } })
-                .then((response) => console.log(response.data))
+                .then((response) => (response.data))
                 .catch((err) => err);
         });
         //Metrics
@@ -72,7 +72,7 @@ class waddle {
                 .get(`${baseURL}/buckets/72ed4dc9-e4bc-4d87-9da3-15b059b15027/metrics`, {
                 headers: { Authorization: this.bearer },
             })
-                .then((response) => console.log(response.data))
+                .then((response) => (response.data))
                 .catch((err) => err);
         });
         //deleteMetrics method to create the buckets
@@ -198,14 +198,31 @@ class waddle {
                 .then((response) => response.data)
                 .catch((err) => err);
         });
-        //Adding data to the metrics
+        //Single Metric Data Load
         this.addData = (id, metric_id) => __awaiter(this, void 0, void 0, function* () {
             return axios_1.default
                 .post(`${baseURL}/buckets/2fdfa41-a18b-4060-af36-83cd6de8e283/metrics/71ad0fea-27d2-4150-a552-29dc5cf39c2c`, {
-                timestamp: "2023-01-18T12:01:43+05:30",
+                timestamp: "2023-01-19T12:01:43+05:30",
                 value: 41.07893079486007
             }, { headers: { Authorization: this.bearer } })
                 .then((response) => response.data)
+                .catch((err) => err);
+        });
+        //batchload API
+        this.batchload = (id) => __awaiter(this, void 0, void 0, function* () {
+            return axios_1.default
+                .post(`${baseURL}/buckets/42fdfa41-a18b-4060-af36-83cd6de8e283/batchload`, {
+                batch: {
+                    "sensor1": 518.67,
+                    "sensor10": 1.3,
+                    "sensor11": 47.47,
+                    "sensor12": 521.66,
+                    "sensor13": 2388.02,
+                },
+                tag: "test",
+                timestamp: "2023-01-13T20:23:06+05:30"
+            }, { headers: { Authorization: this.bearer } })
+                .then((response) => console.log(response.data))
                 .catch((err) => err);
         });
         this.bearer = bearer;

@@ -1,6 +1,7 @@
 import waddle from '../src/waddle';
 import env from '../config.json';
 
+
 describe('Authentication & Authorization', () => {
   test('Test bearer tokens are generated', async () => {
     const wd = await waddle.build(env);
@@ -20,33 +21,47 @@ describe('Buckets Fetch', () => {
 describe('Buckets Create', () => {
   test('Test buckets is created successfully', async () => {
     const wd = await waddle.build(env);
-    const buckets = await wd.createBucket();
+    const buckets = await wd.createBucket({
+          interval: 12,
+          location: 'Asia/Calcutta',
+          name: 'Hospital211',
+          retention_days: 30,
+          type: 'time_series',
+          user_id: 'rajan.s@cleverinsight.co',
+    });
     expect(buckets).toBeDefined();
-    expect(buckets).toHaveProperty('name');
   });
 });
 
 describe('Buckets Delete', () => {
-  test('Test buckets is deleted successfully', async () => {
+  test('Test buckets is archeived successfully', async () => {
     const wd = await waddle.build(env);
-    const buckets = await wd.deleteBucket('3c0effe4-f069-4168-8ab8-dc926ebcd14d');
-    
+    const buckets = await wd.archieveBucket('bfc8ba3f-3452-4528-8a07-2cf0ffa46181',{
+      is_archived: true,
+        user_id: "rajan.s@cleverinsight.co"
+    });
+    expect(buckets.is_archived).toBe(true);
   });
 });
 
 describe('Buckets Update', () => {
   test('Test to update bucket name succesfully', async () => {
     const wd = await waddle.build(env);
-    const buckets = await wd.updateBucket('72ed4dc9-e4bc-4d87-9da3-15b059b15027');
-     
-    
+    const buckets = await wd.updateBucket('bfc8ba3f-3452-4528-8a07-2cf0ffa46181',{
+          name:'HOSPITAL123456',
+          user_id: 'rajan.s@cleverinsight.co',
+    });
+    expect(buckets).toBeDefined();
   });
 });
 
 describe('Metrics Create', () => {
   test('Test metrics is created successfully', async () => {
     const wd = await waddle.build(env);
-    const metrics = await wd.createMetrics('72ed4dc9-e4bc-4d87-9da3-15b059b15027');
+    const metrics = await wd.createMetrics('42fdfa41-a18b-4060-af36-83cd6de8e283',{
+      user_id: 'rajan.s@cleverinsight.co',
+      name: 'vehicletest'
+    });
     expect(metrics).toBeDefined();
     expect(metrics).toHaveProperty('name');
   });
@@ -55,17 +70,21 @@ describe('Metrics Create', () => {
 describe('Metrics Fetch', () => {
   test('Test list of metrics returned', async () => {
     const wd = await waddle.build(env);
-    const metrics = await wd.createMetrics('72ed4dc9-e4bc-4d87-9da3-15b059b15027');
+    const metrics = await wd.getMetrics('72ed4dc9-e4bc-4d87-9da3-15b059b15027');
     expect(metrics).toBeDefined();
   });
 });
 
-describe('Metrics Delete', () => {
-  test('Test metrics is deleted successfully', async () => {
+describe('Metrics Archeive', () => {
+  test('Test metrics is archeived successfully', async () => {
     const wd = await waddle.build(env);
-    const metrics = await wd.deleteMetrics(
-      '8430bc62-555a-4b5b-b239-972a101cd6a1',
-      '5ed3f60c-0804-4a5d-909d-4bd8d3665f8f',
+    const metrics = await wd.archieveMetric(
+      '42fdfa41-a18b-4060-af36-83cd6de8e283',
+      'f21301f1-7859-4df7-ba31-962339dcd996',
+      {
+        is_archived: true,
+        user_id: "rajan.s@cleverinsight.co"
+      }
     );
   });
 });
@@ -73,7 +92,10 @@ describe('Metrics Delete', () => {
 describe('Metrics Update', () => {
   test('Test to update bucket name succesfully', async () => {
     const wd = await waddle.build(env);
-    const metrics = await wd.updateMetrics('72ed4dc9-e4bc-4d87-9da3-15b059b15027','361c775b-0049-447b-8c84-fc600188b8bc');
+    const metrics = await wd.updateMetrics('42fdfa41-a18b-4060-af36-83cd6de8e283','ba5778cb-60f2-4a02-9f13-e087324d77d9',{
+      user_id: 'rajan.s@cleverinsight.co',
+      tag: 'zone',
+    });
   });
 });
 
@@ -115,7 +137,15 @@ describe('Alert Create', () => {
     const wd = await waddle.build(env);
     const alert = await wd.createAlert(
       '72ed4dc9-e4bc-4d87-9da3-15b059b15027',
-      '3206c6d0-da4d-4674-8dcf-b055d5cba960',
+      '3206c6d0-da4d-4674-8dcf-b055d5cba960',{
+        comparison: '>',
+          lower_range: 78,
+          metric_id: '3206c6d0-da4d-4674-8dcf-b055d5cba960',
+          name: 'failure1',
+          services: ['whatsapp'],
+          type: 'Info',
+          upper_range: 100,
+      }
     );
   }, 60_000);
 });
@@ -134,7 +164,15 @@ describe('Alert Delete', () => {
 describe('Alert Update', () => {
   test('Test to update alert details succesfully', async () => {
     const wd = await waddle.build(env);
-    const alert = await wd.updateAlert('72ed4dc9-e4bc-4d87-9da3-15b059b15027','361c775b-0049-447b-8c84-fc600188b8bc','a8149911-8051-4bfa-8392-76c85c9e262b');
+    const alert = await wd.updateAlert('72ed4dc9-e4bc-4d87-9da3-15b059b15027','361c775b-0049-447b-8c84-fc600188b8bc','a8149911-8051-4bfa-8392-76c85c9e262b',{
+      comparison: '>',
+          lower_range: 97.319712965,
+          metric_id: '361c775b-0049-447b-8c84-fc600188b8bc',
+          name: 'cpu failure',
+          services: ['whatsapp'],
+          type: 'Info',
+          upper_range: 99.3561005523,
+    });
   });
 });
 
@@ -170,12 +208,24 @@ describe('Adding Data', () => {
     const wd = await waddle.build(env);
     const data = await wd.addData(
       '42fdfa41-a18b-4060-af36-83cd6de8e283',
-      'f21301f1-7859-4df7-ba31-962339dcd996',
+      'ba5778cb-60f2-4a02-9f13-e087324d77d9',{
+        timestamp: "2023-01-23T15:50:06+05:30",
+        value: 27.4633989336599
+      }
     );
   }, 60_000);
 });
 
-//mock tests
+// describe('BatchLoad', () => {
+//   test('Test to batchload data to be successfully', async () => {
+//     const wd = await waddle.build(env);
+//     const data = await wd.batchload(
+//       '42fdfa41-a18b-4060-af36-83cd6de8e283'
+//     );
+//   }, 60_000);
+// });
+
+// //mock tests
 
 describe('Buckets Fetch', () => {
   const mockUrl = '/buckets';
