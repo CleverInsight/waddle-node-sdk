@@ -10,8 +10,8 @@ class waddle {
   }
 
   public static async build(env: any): Promise<waddle> {
-    //const bearer = await this.getToken(env);
-    return new waddle('Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOTk5YzBhMWE1YWQzYTkxMGU0YzE2NyIsImVtYWlsIjoicmFqYW4uc0BjbGV2ZXJpbnNpZ2h0LmNvIiwiZm5hbWUiOiJSYWphbiIsImxuYW1lIjoicyIsImF1dGhfa2V5IjoiZmVlZGY4YTEtNDhjNC00NTZmLTk1MDAtMTE0YjkwM2QxMGNkIiwiYXV0aF9zZWNyZXQiOiJmYmQ3MmUxZTU3NjU4MzVjZGM3MDQwMGZiNzhhOWMwNDdjNThhNTI1M2VmMjczOTVkYjM2MzAzYTVmN2RiNTNkIiwiY3JlYXRlZEF0IjoiMjAyMi0xMi0xNFQwOTo0ODo1OC44ODBaIiwidXBkYXRlZEF0IjoiMjAyMy0wMS0yMFQxMDo1NzoxOC44MjZaIiwiaWF0IjoxNjc0MjEyMjM5fQ.tTDzY-4OmdIfqT8Qj12GEz1SMb_coqI9Bc32ygPp-uk');
+    const bearer = await this.getToken(env);
+    return new waddle(bearer);
   }
 
   //getToken method to fetch the token

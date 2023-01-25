@@ -166,12 +166,12 @@ To create batchload we need to pass bucketId and data's like
         tag : string
         timestamp : datetime format ex:`timestamp": "2023-01-25T20:23:06+05:30`
         Example:
-
-       {
-                "batch": {
-                "metrics2": 518.67,
-                "metrics2": 1.3,
-                "metrics3": 47.47
+        {
+          "batch": 
+        {
+          "metrics2": 518.67,
+          "metrics2": 1.3,
+          "metrics3": 47.47
         },
         "tag":"demo",
         "timestamp": "2021-01-13T20:23:06+05:30"
