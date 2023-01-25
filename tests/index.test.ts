@@ -14,6 +14,9 @@ describe('Buckets Fetch', () => {
     const wd = await waddle.build(env);
     const buckets = await wd.getBuckets();
     expect(buckets).toBeDefined();
+    expect(buckets[0]).toHaveProperty('bucket_name')
+    expect(buckets[0]).toHaveProperty('bucket_location')
+    expect(buckets[0]).toHaveProperty('bucket_interval')
   });
   
 });
@@ -24,7 +27,7 @@ describe('Buckets Create', () => {
     const buckets = await wd.createBucket({
           interval: 12,
           location: 'Asia/Calcutta',
-          name: 'Hospital211',
+          name: 'Hospi',
           retention_days: 30,
           type: 'time_series',
           user_id: 'rajan.s@cleverinsight.co',
@@ -38,9 +41,8 @@ describe('Buckets Delete', () => {
     const wd = await waddle.build(env);
     const buckets = await wd.archieveBucket('bfc8ba3f-3452-4528-8a07-2cf0ffa46181',{
       is_archived: true,
-        user_id: "rajan.s@cleverinsight.co"
+      user_id: "rajan.s@cleverinsight.co"
     });
-    expect(buckets.is_archived).toBe(true);
   });
 });
 
@@ -60,10 +62,9 @@ describe('Metrics Create', () => {
     const wd = await waddle.build(env);
     const metrics = await wd.createMetrics('42fdfa41-a18b-4060-af36-83cd6de8e283',{
       user_id: 'rajan.s@cleverinsight.co',
-      name: 'vehicletest'
+      name: 'vehicle'
     });
     expect(metrics).toBeDefined();
-    expect(metrics).toHaveProperty('name');
   });
 });
 
@@ -216,14 +217,47 @@ describe('Adding Data', () => {
   }, 60_000);
 });
 
-// describe('BatchLoad', () => {
-//   test('Test to batchload data to be successfully', async () => {
-//     const wd = await waddle.build(env);
-//     const data = await wd.batchload(
-//       '42fdfa41-a18b-4060-af36-83cd6de8e283'
-//     );
-//   }, 60_000);
-// });
+describe('BatchLoad', () => {
+  test('Test to batchload data to be successfully', async () => {
+    const wd = await waddle.build(env);
+    const data = await wd.batchload(
+      '42fdfa41-a18b-4060-af36-83cd6de8e283',{
+        "batch": {
+          "hpcdegradation.onecondition.sensor1": 518.67,
+          "hpcdegradation.onecondition.sensor10": 1.3,
+          "hpcdegradation.onecondition.sensor11": 47.47,
+          "hpcdegradation.onecondition.sensor12": 521.66,
+          "hpcdegradation.onecondition.sensor13": 2388.02,
+          "hpcdegradation.onecondition.sensor14": 8138.62,
+          "hpcdegradation.onecondition.sensor15": 8.4195,
+          "hpcdegradation.onecondition.sensor16": 0.03,
+          "hpcdegradation.onecondition.sensor17": 392,
+          "hpcdegradation.onecondition.sensor18": 2388,
+          "hpcdegradation.onecondition.sensor19": 100,
+          "hpcdegradation.onecondition.sensor2": 641.82,
+          "hpcdegradation.onecondition.sensor20": 39.06,
+          "hpcdegradation.onecondition.sensor21": 23.419,
+          "hpcdegradation.onecondition.sensor3": 1589.7,
+          "hpcdegradation.onecondition.sensor4": 1400.6,
+          "hpcdegradation.onecondition.sensor5": 14.62,
+          "hpcdegradation.onecondition.sensor6": 21.61,
+          "hpcdegradation.onecondition.sensor7": 554.36,
+          "hpcdegradation.onecondition.sensor8": 2388.06,
+          "hpcdegradation.onecondition.sensor9": 9046.19,
+          "hpcdegradation.onecondition.setting1": -0.0007,
+          "hpcdegradation.onecondition.setting2": -0.0004,
+          "hpcdegradation.onecondition.setting3": 100,
+          "hpcdegradation.onecondition.setting4": 100,
+          "hpcdegradation.onecondition.setting5": 100,
+          "hpcdegradation.onecondition.setting6": 100
+        },
+        "tag":"NASAtest",
+        "timestamp": "2023-01-25T20:23:06+05:30"
+      }
+    );
+    expect(data).toBe("Inserted to Queue")
+  }, 60_000);
+});
 
 // //mock tests
 

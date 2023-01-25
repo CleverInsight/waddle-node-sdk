@@ -10,8 +10,8 @@ class waddle {
   }
 
   public static async build(env: any): Promise<waddle> {
-    const bearer = await this.getToken(env);
-    return new waddle(bearer);
+    //const bearer = await this.getToken(env);
+    return new waddle('Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOTk5YzBhMWE1YWQzYTkxMGU0YzE2NyIsImVtYWlsIjoicmFqYW4uc0BjbGV2ZXJpbnNpZ2h0LmNvIiwiZm5hbWUiOiJSYWphbiIsImxuYW1lIjoicyIsImF1dGhfa2V5IjoiZmVlZGY4YTEtNDhjNC00NTZmLTk1MDAtMTE0YjkwM2QxMGNkIiwiYXV0aF9zZWNyZXQiOiJmYmQ3MmUxZTU3NjU4MzVjZGM3MDQwMGZiNzhhOWMwNDdjNThhNTI1M2VmMjczOTVkYjM2MzAzYTVmN2RiNTNkIiwiY3JlYXRlZEF0IjoiMjAyMi0xMi0xNFQwOTo0ODo1OC44ODBaIiwidXBkYXRlZEF0IjoiMjAyMy0wMS0yMFQxMDo1NzoxOC44MjZaIiwiaWF0IjoxNjc0MjEyMjM5fQ.tTDzY-4OmdIfqT8Qj12GEz1SMb_coqI9Bc32ygPp-uk');
   }
 
   //getToken method to fetch the token
@@ -41,7 +41,9 @@ class waddle {
         },
         { headers: { Authorization: this.bearer } },
       )
-      .then((response) => (response.data))
+      .then((response) =>{
+        return response.data
+     })
       .catch((err) => err);
   };
 
@@ -50,7 +52,9 @@ class waddle {
   getBuckets = async () => {
     return axios
       .get(`${baseURL}/buckets`, { headers: { Authorization: this.bearer } })
-      .then((response) => response.data)
+      .then((response) =>{
+        return response.data
+     })
       .catch((err) => err);
   };
 
@@ -63,7 +67,9 @@ class waddle {
         is_archived: true,
         user_id: "rajan.s@cleverinsight.co"
       } ,{ headers: { Authorization: this.bearer } })
-      .then((response) => response)
+      .then((response) =>{
+        return response.data
+     })
       .catch((err) => err);
   };
 
@@ -97,7 +103,9 @@ class waddle {
         },
         { headers: { Authorization: this.bearer } },
       )
-      .then((response) => response.data)
+      .then((response) =>{
+        return response.data
+     })
       .catch((err) => err);
   };
 
@@ -108,7 +116,9 @@ class waddle {
       .get(`${baseURL}/buckets/72ed4dc9-e4bc-4d87-9da3-15b059b15027/metrics`, {
         headers: { Authorization: this.bearer },
       })
-      .then((response) => (response.data))
+      .then((response) =>{
+        return response.data
+     })
       .catch((err) => err);
   };
 
@@ -121,7 +131,9 @@ class waddle {
         is_archived: data.is_archived,
         user_id: data.user_id
       } ,{ headers: { Authorization: this.bearer } })
-      .then((response) => response)
+      .then((response) =>{
+        return response.data
+     })
       .catch((err) => err);
   };
 
@@ -137,7 +149,9 @@ class waddle {
         },
         { headers: { Authorization: this.bearer } },
       )
-      .then((response) => (response.data))
+      .then((response) =>{
+        return response.data
+     })
       .catch((err) => err);
   };
 
@@ -150,7 +164,9 @@ class waddle {
       .get(`${baseURL}/buckets/${id}/anomaly`, {
         headers: { Authorization: this.bearer },
       })
-      .then((response) => response.data)
+      .then((response) =>{
+        return response.data
+     })
       .catch((err) => err);
   };
 
@@ -164,7 +180,9 @@ class waddle {
           headers: { Authorization: this.bearer },
         },
       )
-      .then((response) => response.data)
+      .then((response) =>{
+        return response.data
+     })
       .catch((err) => err);
   };
 
@@ -177,7 +195,9 @@ class waddle {
       .get(`${baseURL}/buckets/${id}/alert`, {
         headers: { Authorization: this.bearer },
       })
-      .then((response) => response.data)
+      .then((response) =>{
+        return response.data
+     })
       .catch((err) => err);
   };
 
@@ -191,7 +211,9 @@ class waddle {
           headers: { Authorization: this.bearer },
         },
       )
-      .then((response) => response.data)
+      .then((response) =>{
+        return response.data
+     })
       .catch((err) => err);
   };
 
@@ -212,7 +234,9 @@ class waddle {
         },
         { headers: { Authorization: this.bearer } },
       )
-      .then((response) => response.data)
+      .then((response) =>{
+        return response.data
+     })
       .catch((err) => err);
   };
 
@@ -224,7 +248,9 @@ class waddle {
         `${baseURL}/buckets/${id}/metrics/${metric_id}/alert?${alert_id}`,
         { headers: { Authorization: this.bearer } },
       )
-      .then((response) => response)
+      .then((response) =>{
+        return response.data
+     })
       .catch((err) => err);
   };
 
@@ -245,7 +271,9 @@ class waddle {
         },
         { headers: { Authorization: this.bearer } },
       )
-      .then((response) => (response.data))
+      .then((response) =>{
+        return response.data
+     })
       .catch((err) => err);
   };
 
@@ -261,7 +289,9 @@ class waddle {
           headers: { Authorization: this.bearer },
         },
       )
-      .then((response) => response.data)
+      .then((response) =>{
+        return response.data
+     })
       .catch((err) => err);
   };
 
@@ -274,7 +304,9 @@ class waddle {
       .get(`${baseURL}/buckets/${id}/telemetry`, {
         headers: { Authorization: this.bearer },
       })
-      .then((response) => response.data)
+      .then((response) =>{
+        return response.data
+     })
       .catch((err) => err);
   };
 
@@ -288,7 +320,9 @@ class waddle {
           headers: { Authorization: this.bearer },
         },
       )
-      .then((response) => response.data)
+      .then((response) =>{
+        return response.data
+     })
       .catch((err) => err);
   };
 
@@ -304,7 +338,9 @@ class waddle {
         },
         { headers: { Authorization: this.bearer } },
       )
-      .then((response) => response.data)
+      .then((response) =>{
+        return response.data
+     })
       .catch((err) => err);
   };
 
@@ -316,14 +352,16 @@ class waddle {
         `${baseURL}/buckets/${id}/batchload`,
         {
           
-            batch:data,
+            batch:data.batch,
             tag:data.tag,
             timestamp: data.timestamp
           
         },
         { headers: { Authorization: this.bearer } },
       )
-      .then((response) => console.log(response.data))
+      .then((response) =>{
+         return response.data
+      })
       .catch((err) => err);
   };
 }
