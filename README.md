@@ -155,5 +155,33 @@ To update a bucket name need to pass bucketId and data's like,
 
 `getMetricTelemetry` method is used to fetch telemetric data of metrics.
 
+## Batchload API
+
+### To create batch of metrices and add data to those metrics
+
+`batchload` method is used to create a bulk amount of metrics and add data to those metrics
+
+To create batchload we need to pass bucketId and data's like
+        batch : array of strings and values 
+        tag : string
+        timestamp : datetime format ex:`timestamp": "2023-01-25T20:23:06+05:30`
+        Example:
+
+       {
+                "batch": {
+                "metrics2": 518.67,
+                "metrics2": 1.3,
+                "metrics3": 47.47
+        },
+        "tag":"demo",
+        "timestamp": "2021-01-13T20:23:06+05:30"
+        }      
+
+## To add data to the metrics
+
+`addData` method is used to add data to the metrics
+To add data we need to pass bucketId , metricId and data's like 
+        timestamp : datetime ; format ex : `timestamp": "2023-01-25T20:23:06+05:30`
+        value : number
 
 
