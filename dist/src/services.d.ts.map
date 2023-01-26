@@ -1,1 +1,5 @@
+<<<<<<< HEAD
+{"version":3,"file":"services.d.ts","sourceRoot":"","sources":["../../src/services.ts"],"names":[],"mappings":"AAGA,QAAA,MAAM,QAAQ,+BAMZ,CAAC;AAEH,eAAe,QAAQ,CAAC"}
+=======
 {"version":3,"file":"services.d.ts","sourceRoot":"","sources":["../../src/services.ts"],"names":[],"mappings":"AAIA,QAAA,MAAM,QAAQ,+BAMZ,CAAC;AAEH,eAAe,QAAQ,CAAC"}
+>>>>>>> 250fe02c0730a00412208b297f5087af95177fce
