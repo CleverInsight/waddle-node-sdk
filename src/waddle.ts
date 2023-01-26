@@ -3,7 +3,7 @@ import axios from 'axios';
 const baseURL = 'https://api.waddle.cloud/beta';
 
 class waddle {
-  
+
   bearer: string;
   constructor(bearer: string) {
     this.bearer = bearer;
@@ -53,6 +53,7 @@ class waddle {
     return axios
       .get(`${baseURL}/buckets`, { headers: { Authorization: this.bearer } })
       .then((response) =>{
+        console.log(response.data)
         return response.data
      })
       .catch((err) => err);
@@ -328,6 +329,8 @@ class waddle {
 
   //Single Metric Data Load
 
+  //addData method to add data to the metrics
+
   addData = async (id: string,metric_id:string,data:any) => {
     return axios
       .post(
@@ -345,6 +348,8 @@ class waddle {
   };
 
   //batchload API
+
+  //batchload method is used to create a bulk amount of metrics and add data to those metrics
 
   batchload = async (id: string,data:any) => {
     return axios

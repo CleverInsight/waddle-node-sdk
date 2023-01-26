@@ -1,7 +1,6 @@
 import waddle from '../src/waddle';
 import env from '../config.json';
 
-
 describe('Authentication & Authorization', () => {
   test('Test bearer tokens are generated', async () => {
     const wd = await waddle.build(env);
@@ -13,6 +12,7 @@ describe('Buckets Fetch', () => {
   test('Test list of buckets returned', async () => {
     const wd = await waddle.build(env);
     const buckets = await wd.getBuckets();
+    console.debug(buckets)
     expect(buckets).toBeDefined();
     expect(buckets[0]).toHaveProperty('bucket_name')
     expect(buckets[0]).toHaveProperty('bucket_location')
@@ -87,6 +87,7 @@ describe('Metrics Archeive', () => {
         user_id: "rajan.s@cleverinsight.co"
       }
     );
+
   });
 });
 

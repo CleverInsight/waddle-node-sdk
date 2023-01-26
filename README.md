@@ -11,10 +11,9 @@ To use this module first simply install the module using the below command.
 
 The current version of the module has only 21 functions to use
 
-### Waddle Authentication and Authorization
+## Waddle Authentication and Authorization
 
 `getToken` method is used to get the token of waddle.
-
 
 ## Buckets
 
@@ -183,5 +182,3 @@ To create batchload we need to pass bucketId and data's like
 To add data we need to pass bucketId , metricId and data's like 
         timestamp : datetime ; format ex : `timestamp": "2023-01-25T20:23:06+05:30`
         value : number
-
-
