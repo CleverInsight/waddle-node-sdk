@@ -14,6 +14,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const waddle_1 = __importDefault(require("../src/waddle"));
 const config_json_1 = __importDefault(require("../config.json"));
+<<<<<<< HEAD
+=======
+// global.fetch= jest.fn( () =>
+// Promise.resolve({
+//   JSON:()=>Promise.resolve({buckets:{buckets:'name'}})
+// })
+// )as jest.Mock;
+>>>>>>> 250fe02c0730a00412208b297f5087af95177fce
 describe('Authentication & Authorization', () => {
     test('Test bearer tokens are generated', () => __awaiter(void 0, void 0, void 0, function* () {
         const wd = yield waddle_1.default.build(config_json_1.default);
@@ -24,15 +32,21 @@ describe('Buckets Fetch', () => {
     test('Test list of buckets returned', () => __awaiter(void 0, void 0, void 0, function* () {
         const wd = yield waddle_1.default.build(config_json_1.default);
         const buckets = yield wd.getBuckets();
+<<<<<<< HEAD
         expect(buckets).toBeDefined();
+=======
+>>>>>>> 250fe02c0730a00412208b297f5087af95177fce
     }));
 });
 describe('Buckets Create', () => {
     test('Test buckets is created successfully', () => __awaiter(void 0, void 0, void 0, function* () {
         const wd = yield waddle_1.default.build(config_json_1.default);
         const buckets = yield wd.createBucket();
+<<<<<<< HEAD
         expect(buckets).toBeDefined();
         expect(buckets).toHaveProperty('name');
+=======
+>>>>>>> 250fe02c0730a00412208b297f5087af95177fce
     }));
 });
 describe('Buckets Delete', () => {
@@ -92,11 +106,18 @@ describe('Bucket Alert-Fetch', () => {
         const alert = yield wd.getBucketAlert('76d224a3-91ea-469d-9dbc-e0fe2cc7f109');
     }), 60000);
 });
+<<<<<<< HEAD
 describe('Metric Alert-Fetch', () => {
     test('Test - list of alerts returned', () => __awaiter(void 0, void 0, void 0, function* () {
         const wd = yield waddle_1.default.build(config_json_1.default);
         const alert = yield wd.getMetricAlert('76d224a3-91ea-469d-9dbc-e0fe2cc7f109', '49499dc5-af72-43ca-804a-bec13c64a077');
         expect(alert).toBeDefined();
+=======
+describe('Bucket Alert-Fetch', () => {
+    test('Test - list of alerts returned', () => __awaiter(void 0, void 0, void 0, function* () {
+        const wd = yield waddle_1.default.build(config_json_1.default);
+        const alert = yield wd.getMetricAlert('76d224a3-91ea-469d-9dbc-e0fe2cc7f109', '49499dc5-af72-43ca-804a-bec13c64a077');
+>>>>>>> 250fe02c0730a00412208b297f5087af95177fce
     }), 60000);
 });
 describe('Alert Create', () => {
@@ -121,21 +142,30 @@ describe('Event Correlation Fetch', () => {
     test('Test to returned the list of correlated data', () => __awaiter(void 0, void 0, void 0, function* () {
         const wd = yield waddle_1.default.build(config_json_1.default);
         const event = yield wd.getEventCorrelation('76d224a3-91ea-469d-9dbc-e0fe2cc7f109');
+<<<<<<< HEAD
         expect(event).toBeDefined();
+=======
+>>>>>>> 250fe02c0730a00412208b297f5087af95177fce
     }), 60000);
 });
 describe('Telemetry of Metrics - Fetch', () => {
     test('Test to return the telemetry of metrics', () => __awaiter(void 0, void 0, void 0, function* () {
         const wd = yield waddle_1.default.build(config_json_1.default);
         const telemetry = yield wd.getMetricTelemetry('76d224a3-91ea-469d-9dbc-e0fe2cc7f109', 'fa27bfc2-f348-47fe-a448-e258051a4c20');
+<<<<<<< HEAD
         expect(telemetry).toBeDefined();
+=======
+>>>>>>> 250fe02c0730a00412208b297f5087af95177fce
     }), 60000);
 });
 describe('Telemetry of Buckets - Fetch', () => {
     test('Test to return the telemetry of buckets', () => __awaiter(void 0, void 0, void 0, function* () {
         const wd = yield waddle_1.default.build(config_json_1.default);
         const telemetry = yield wd.getBucketTelemetry('76d224a3-91ea-469d-9dbc-e0fe2cc7f109');
+<<<<<<< HEAD
         expect(telemetry).toBeDefined();
+=======
+>>>>>>> 250fe02c0730a00412208b297f5087af95177fce
     }), 60000);
 });
 describe('Adding Data', () => {
@@ -144,12 +174,15 @@ describe('Adding Data', () => {
         const data = yield wd.addData('42fdfa41-a18b-4060-af36-83cd6de8e283', 'f21301f1-7859-4df7-ba31-962339dcd996');
     }), 60000);
 });
+<<<<<<< HEAD
 describe('BatchLoad', () => {
     test('Test to batchload data to be successfully', () => __awaiter(void 0, void 0, void 0, function* () {
         const wd = yield waddle_1.default.build(config_json_1.default);
         const data = yield wd.batchload('42fdfa41-a18b-4060-af36-83cd6de8e283');
     }), 60000);
 });
+=======
+>>>>>>> 250fe02c0730a00412208b297f5087af95177fce
 //mock tests
 describe('Buckets Fetch', () => {
     const mockUrl = '/buckets';
@@ -159,11 +192,16 @@ describe('Buckets Fetch', () => {
     const getBuckets = jest.fn(url => mockBuckets);
     it('returns buckets from an api call', () => {
         expect(getBuckets(mockUrl)).toBe(mockBuckets);
+<<<<<<< HEAD
+=======
+        console.debug(getBuckets);
+>>>>>>> 250fe02c0730a00412208b297f5087af95177fce
     });
     it('called getBuckets with a mockUrl', () => {
         expect(getBuckets).toHaveBeenCalledWith(mockUrl);
     });
 });
+<<<<<<< HEAD
 describe('Buckets Create', () => {
     const mockUrl = '/buckets';
     const mockBuckets = [{
@@ -304,4 +342,6 @@ describe('Alert Update', () => {
         expect(updateAlert).toHaveBeenCalledWith(mockUrl);
     });
 });
+=======
+>>>>>>> 250fe02c0730a00412208b297f5087af95177fce
 //# sourceMappingURL=index.test.js.map

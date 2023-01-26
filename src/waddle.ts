@@ -3,7 +3,6 @@ import axios from 'axios';
 const baseURL = 'https://api.waddle.cloud/beta';
 
 class waddle {
-
   bearer: string;
   constructor(bearer: string) {
     this.bearer = bearer;
