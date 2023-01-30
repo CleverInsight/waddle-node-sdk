@@ -46,7 +46,7 @@ class waddle {
       .catch((err) => err);
   };
 
-  //getBucket to fetch the bucket
+  //getBucket method is to fetch the bucket
 
   getBuckets = async () => {
     return axios

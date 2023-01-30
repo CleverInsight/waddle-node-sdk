@@ -176,7 +176,9 @@ To create batchload we need to pass bucketId and data's like
         "timestamp": "2021-01-13T20:23:06+05:30"
         }      
 
-## To add data to the metrics
+## Single Metric Data Load
+
+### To add data to the metrics
 
 `addData` method is used to add data to the metrics
 To add data we need to pass bucketId , metricId and data's like 

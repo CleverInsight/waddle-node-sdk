@@ -356,6 +356,36 @@ describe('Metrics Update', () => {
   });
 });
 
+describe('Anomaly-Fetch', () => {
+  const mockUrl = '/buckets/76d224a3-91ea-469d-9dbc-e0fe2cc7f109/anomaly';
+  const mockAnomaly = [{
+      date: "18-01-2023",
+      count: 27
+  }];
+  const getAnomaly = jest.fn(url => mockAnomaly);
+  it('returns anomalies from an api call', () => {
+    expect(getAnomaly(mockUrl)).toBe(mockAnomaly);
+  });
+  it('called getAnomaly with a mockUrl', () => {
+    expect(getAnomaly).toHaveBeenCalledWith(mockUrl);
+  });
+});
+
+describe('Anomaly-Fetch with Filter', () => {
+  const mockUrl = '/buckets/76d224a3-91ea-469d-9dbc-e0fe2cc7f109/anomaly/filter';
+  const mockAnomaly = [{
+    metric: "",
+    data: []
+  }];
+  const getFilteredAnomaly = jest.fn(url => mockAnomaly);
+  it('returns anomalies from an api call', () => {
+    expect(getFilteredAnomaly(mockUrl)).toBe(mockAnomaly);
+  });
+  it('called getAnomaly with a mockUrl', () => {
+    expect(getFilteredAnomaly).toHaveBeenCalledWith(mockUrl);
+  });
+});
+
 describe('Bucket Alert-Fetch', () => {
   const mockUrl = '/buckets/76d224a3-91ea-469d-9dbc-e0fe2cc7f109/alert';
   const mockAlerts = [{
@@ -427,3 +457,22 @@ describe('Alert Update', () => {
     expect(updateAlert).toHaveBeenCalledWith(mockUrl);
   });
 });
+
+describe('Metric Alert-Fetch', () => {
+  const mockUrl = '/buckets/76d224a3-91ea-469d-9dbc-e0fe2cc7f109/metrics/49499dc5-af72-43ca-804a-bec13c64a077/alert';
+  const mockAlerts = [{
+     bucket_name: "", 
+     metric:""
+  }];
+  const getMetricAlert = jest.fn(url => mockAlerts);
+  it('returns alerts from an api call', () => {
+    expect(getMetricAlert(mockUrl)).toBe(mockAlerts);
+  });
+  it('called getMetricAlerts with a mockUrl', () => {
+    expect(getMetricAlert).toHaveBeenCalledWith(mockUrl);
+  });
+});
+
+
+
+

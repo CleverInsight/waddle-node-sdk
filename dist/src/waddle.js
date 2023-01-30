@@ -23,20 +23,12 @@ class waddle {
                 .post(`${baseURL}/buckets`, {
                 interval: 12,
                 location: 'Asia/Calcutta',
-<<<<<<< HEAD
                 name: 'Manufact',
-=======
-                name: 'Vehicles',
->>>>>>> 250fe02c0730a00412208b297f5087af95177fce
                 retention_days: 30,
                 type: 'time_series',
                 user_id: 'rajan.s@cleverinsight.co',
             }, { headers: { Authorization: this.bearer } })
-<<<<<<< HEAD
                 .then((response) => (response.data))
-=======
-                .then((response) => console.log(response.data))
->>>>>>> 250fe02c0730a00412208b297f5087af95177fce
                 .catch((err) => err);
         });
         //getBucket to fetch the bucket
@@ -60,11 +52,7 @@ class waddle {
                 name: 'VehicleTest',
                 user_id: 'rajan.s@cleverinsight.co',
             }, { headers: { Authorization: this.bearer } })
-<<<<<<< HEAD
-                .then((response) => (response.data))
-=======
                 .then((response) => console.log(response.data))
->>>>>>> 250fe02c0730a00412208b297f5087af95177fce
                 .catch((err) => err);
         });
         //Metrics
@@ -84,11 +72,7 @@ class waddle {
                 .get(`${baseURL}/buckets/72ed4dc9-e4bc-4d87-9da3-15b059b15027/metrics`, {
                 headers: { Authorization: this.bearer },
             })
-<<<<<<< HEAD
                 .then((response) => (response.data))
-=======
-                .then((response) => console.log(response.data))
->>>>>>> 250fe02c0730a00412208b297f5087af95177fce
                 .catch((err) => err);
         });
         //deleteMetrics method to create the buckets
@@ -214,25 +198,16 @@ class waddle {
                 .then((response) => response.data)
                 .catch((err) => err);
         });
-<<<<<<< HEAD
         //Single Metric Data Load
         this.addData = (id, metric_id) => __awaiter(this, void 0, void 0, function* () {
             return axios_1.default
                 .post(`${baseURL}/buckets/2fdfa41-a18b-4060-af36-83cd6de8e283/metrics/71ad0fea-27d2-4150-a552-29dc5cf39c2c`, {
                 timestamp: "2023-01-19T12:01:43+05:30",
-=======
-        //Adding data to the metrics
-        this.addData = (id, metric_id) => __awaiter(this, void 0, void 0, function* () {
-            return axios_1.default
-                .post(`${baseURL}/buckets/2fdfa41-a18b-4060-af36-83cd6de8e283/metrics/71ad0fea-27d2-4150-a552-29dc5cf39c2c`, {
-                timestamp: "2023-01-18T12:01:43+05:30",
->>>>>>> 250fe02c0730a00412208b297f5087af95177fce
                 value: 41.07893079486007
             }, { headers: { Authorization: this.bearer } })
                 .then((response) => response.data)
                 .catch((err) => err);
         });
-<<<<<<< HEAD
         //batchload API
         this.batchload = (id) => __awaiter(this, void 0, void 0, function* () {
             return axios_1.default
@@ -250,8 +225,6 @@ class waddle {
                 .then((response) => console.log(response.data))
                 .catch((err) => err);
         });
-=======
->>>>>>> 250fe02c0730a00412208b297f5087af95177fce
         this.bearer = bearer;
     }
     static build(env) {
